@@ -3,7 +3,7 @@
 #include <exception>
 #include <string>
 
-namespace except {
+namespace math {
 
 	using std::exception;
 	using std::string;

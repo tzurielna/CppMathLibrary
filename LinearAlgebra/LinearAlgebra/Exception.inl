@@ -2,7 +2,7 @@
 
 #include <strstream>
 
-namespace except {
+namespace math {
 
 	using std::ostrstream;
 

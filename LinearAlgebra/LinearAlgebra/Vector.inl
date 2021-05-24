@@ -44,7 +44,7 @@ namespace math {
 	template <size_t DIM, class T>
 	T& Vector<DIM, T>::operator[](size_t index) {
 		if (!index || index > DIM) {
-			throw except::OutOfRangeException<size_t>(1, DIM, index);
+			throw OutOfRangeException<size_t>(1, DIM, index);
 		}
 		return m_values[index - 1];
 	}
@@ -52,7 +52,7 @@ namespace math {
 	template <size_t DIM, class T>
 	const T& Vector<DIM, T>::operator[](size_t index) const {
 		if (!index || index > DIM) {
-			throw except::OutOfRangeException<size_t>(1, DIM, index);
+			throw OutOfRangeException<size_t>(1, DIM, index);
 		}
 		return m_values[index - 1];
 	}
@@ -113,7 +113,7 @@ namespace math {
 	template <size_t DIM, class T>
 	Vector<DIM, T>&& Vector<DIM, T>::operator/(const T& scalar) const {
 		if (!scalar) {
-			throw except::DivisionByZeroException();
+			throw DivisionByZeroException();
 		}
 		Vector<DIM, T> result;
 		transform(m_values.begin(), m_values.end(), result.m_values.begin(),
@@ -124,7 +124,7 @@ namespace math {
 	template <size_t DIM, class T>
 	Vector<DIM, T>& Vector<DIM, T>::operator/=(const T& scalar) {
 		if (!scalar) {
-			throw except::DivisionByZeroException();
+			throw DivisionByZeroException();
 		}
 		transform(m_values.begin(), m_values.end(), m_values.begin(),
 			[](const T& elem) { return elem / scalar; });
@@ -135,7 +135,7 @@ namespace math {
 	Vector<DIM, T>& Vector<DIM, T>::normalize() {
 		T&& length = len(*this);
 		if (!length) {
-			throw except::TringNormalizeZeroVectorException();
+			throw TringNormalizeZeroVectorException();
 		}
 		*this /= length;
 		return *this;
@@ -145,7 +145,7 @@ namespace math {
 	Vector<DIM, T>&& Vector<DIM, T>::normalized() const {
 		T&& length = len(*this);
 		if (!length) {
-			throw except::TringNormalizeZeroVectorException();
+			throw TringNormalizeZeroVectorException();
 		}
 		return *this / length;
 	}
