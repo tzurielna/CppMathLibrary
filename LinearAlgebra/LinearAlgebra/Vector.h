@@ -1,47 +1,42 @@
 #pragma once
 
 #include <iostream>
-#include <valarray>
 
 namespace math {
-
-	using std::valarray;
 
 	template <size_t DIM, class T = float>
 	class Vector {
 	public:
 		Vector(const T& value = 0);
 		Vector(const T values[DIM]);
-		Vector(const valarray<T>& values);
 
-		valarray<T>& data();
-		const valarray<T>& data() const;
+		T* data();
+		const T* data() const;
 
 		T& operator[](size_t index);
 		const T& operator[](size_t index) const;
 
-		Vector&& operator+(const Vector& other) const;
+		Vector operator+(const Vector& other) const;
 		Vector& operator+=(const Vector& other);
 
-		Vector&& operator-(const Vector& other) const;
+		Vector operator-(const Vector& other) const;
 		Vector& operator-=(const Vector& other);
 
-		const Vector& operator-() const;
-		Vector& operator-();
+		Vector operator-() const;
 
-		Vector&& operator*(const T& scalar) const;
+		Vector operator*(const T& scalar) const;
 		Vector& operator*=(const T& scalar);
 
-		Vector&& operator/(const T& scalar) const;
+		Vector operator/(const T& scalar) const;
 		Vector& operator/=(const T& scalar);
 
-		T&& operator*(const Vector& other) const;
+		T operator*(const Vector& other) const;
 
-		Vector& normalize();
-		Vector&& normalized() const;
+		Vector& normalize(size_t order = 2);
+		Vector normalized(size_t order = 2) const;
 
 	private:
-		valarray<T> m_values;
+		T m_values[DIM];
 
 	};
 
@@ -49,10 +44,10 @@ namespace math {
 	Vector<DIM, T>& operator*(const T& scalar, const Vector<DIM, T>& vector);
 
 	template <class T>
-	Vector<3, T>&& operator^(const Vector<3, T>& lhs, const Vector<3, T>& rhs);
+	Vector<3, T> operator%(const Vector<3, T>& lhs, const Vector<3, T>& rhs);
 
 	template <class T>
-	Vector<3, T>& operator^=(Vector<3, T>& lhs, const Vector<3, T>& rhs);
+	Vector<3, T>& operator%=(Vector<3, T>& lhs, const Vector<3, T>& rhs);
 
 	template <size_t DIM, class T = float>
 	std::ostream& operator<<(std::ostream& os, const Vector<DIM, T>& vector);
@@ -61,13 +56,25 @@ namespace math {
 	std::istream& operator>>(std::istream& is, const Vector<DIM, T>& vector);
 
 	template <size_t DIM, class T = float>
-	size_t dim(const Vector<DIM, T>& vector);
+	size_t dimension(const Vector<DIM, T>& vector);
 
 	template <size_t DIM, class T = float>
-	T&& len(const Vector<DIM, T>& vector, size_t norm = 2);
+	T norm(const Vector<DIM, T>& vector, size_t order = 2);
 
 	template <size_t DIM, class T = float>
-	T&& dist(const Vector<DIM, T>& lhs, const Vector<DIM, T>& rhs, size_t norm = 2);
+	T distance(const Vector<DIM, T>& lhs, const Vector<DIM, T>& rhs, size_t order = 2);
+
+	template <class T = float>
+	Vector<1, T> get_vector(const T& x);
+
+	template <class T = float>
+	Vector<2, T> get_vector(const T& x, const T& y);
+
+	template <class T = float>
+	Vector<3, T> get_vector(const T& x, const T& y, const T& z);
+
+	template <class T = float>
+	Vector<4, T> get_vector(const T& x, const T& y, const T& z, const T& w);
 
 }
 
