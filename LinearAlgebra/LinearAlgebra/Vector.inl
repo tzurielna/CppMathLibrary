@@ -21,7 +21,7 @@ namespace math {
 
 	template <size_t DIM, class T>
 	Vector<DIM, T>::Vector(const T& value)
-		: m_values(DIM, value) { }
+		: m_values(value, DIM) { }
 
 	template <size_t DIM, class T>
 	Vector<DIM, T>::Vector(const T values[DIM])
@@ -129,6 +129,15 @@ namespace math {
 		transform(m_values.begin(), m_values.end(), m_values.begin(),
 			[](const T& elem) { return elem / scalar; });
 		return *this;
+	}
+
+	template <size_t DIM, class T>
+	T&& Vector<DIM, T>::operator*(const Vector& other) const {
+		T result;
+		for (size_t i = 0; i < DIM; i++) {
+			result += m_values[i] * other.m_values[i];
+		}
+		return move(result);
 	}
 
 	template <size_t DIM, class T>

@@ -35,7 +35,7 @@ namespace math {
 		Vector&& operator/(const T& scalar) const;
 		Vector& operator/=(const T& scalar);
 
-		T&& operator*(const T& other) const;
+		T&& operator*(const Vector& other) const;
 
 		Vector& normalize();
 		Vector&& normalized() const;
