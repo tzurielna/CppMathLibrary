@@ -135,7 +135,7 @@ namespace math {
 	Vector<DIM, T>& Vector<DIM, T>::normalize() {
 		T&& length = len(*this);
 		if (!length) {
-			throw 1;  // TODO: change
+			throw except::TringNormalizeZeroVectorException();
 		}
 		*this /= length;
 		return *this;
@@ -145,7 +145,7 @@ namespace math {
 	Vector<DIM, T>&& Vector<DIM, T>::normalized() const {
 		T&& length = len(*this);
 		if (!length) {
-			throw 1;  // TODO: change
+			throw except::TringNormalizeZeroVectorException();
 		}
 		return *this / length;
 	}

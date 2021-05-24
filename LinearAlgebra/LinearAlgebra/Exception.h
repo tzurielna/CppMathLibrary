@@ -36,6 +36,11 @@ namespace except {
 		const char* what() const override;
 	};
 
+	class TringNormalizeZeroVectorException : public exception {
+	public:
+		const char* what() const override;
+	};
+
 }
 
 #include "Exception.inl"

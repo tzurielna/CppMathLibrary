@@ -18,5 +18,9 @@ namespace except {
 	const char* DivisionByZeroException::what() const {
 		return "Division by zero";
 	}
+
+	const char* TringNormalizeZeroVectorException::what() const {
+		return "Tring to normalize a zero vector";
+	}
 }
 
