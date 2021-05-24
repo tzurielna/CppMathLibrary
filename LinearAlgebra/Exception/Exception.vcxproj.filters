@@ -15,20 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Vector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Vector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
+    <ClInclude Include="..\LinearAlgebra\Exception.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Vector.inl">
+    <None Include="..\LinearAlgebra\Exception.inl">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
