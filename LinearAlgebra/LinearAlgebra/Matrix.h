@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "Vector.h"
+
 namespace math {
 
 	template <size_t M, size_t N, class T = float>
@@ -13,8 +15,8 @@ namespace math {
 		T* data();
 		const T* data() const;
 
-		T& operator[](size_t i, size_t j);
-		const T& operator[](size_t i, size_t j) const;
+		T& operator()(size_t i, size_t j);
+		const T& operator()(size_t i, size_t j) const;
 
 		Matrix operator+(const Matrix& other) const;
 		Matrix& operator+=(const Matrix& other);
@@ -23,7 +25,7 @@ namespace math {
 		Matrix& operator-=(const Matrix& other);
 
 		Matrix operator-() const;
-		Matrix<N, M> operator!() const;
+		Matrix<N, M, T> operator!() const;
 
 		Matrix operator*(const T& scalar) const;
 		Matrix& operator*=(const T& scalar);
@@ -32,18 +34,19 @@ namespace math {
 		Matrix& operator/=(const T& scalar);
 
 		template <size_t K>
-		Matrix operator*(const Matrix<N, K>& other) const;
-		Matrix& operator*=(const Matrix<N, K>& other);
+		Matrix operator*(const Matrix<N, K, T>& other) const;
+		template <size_t K>
+		Matrix& operator*=(const Matrix<N, K, T>& other);
 
 		Matrix& normalize(size_t order = 2);
 		Matrix normalized(size_t order = 2) const;
 
 	private:
-		T m_values[DIM];
+		T m_values[M * N];
 	};
 
 	template <size_t M, size_t N, class T = float>
-	Matrix<M, N, T>& operator*(const T& scalar, const Matrix<M, N, T>& matrix);
+	Matrix<M, N, T> operator*(const T& scalar, const Matrix<M, N, T>& matrix);
 
 	template <size_t M, size_t N, class T = float>
 	std::ostream& operator<<(std::ostream& os, const Matrix<M, N, T>& matrix);
