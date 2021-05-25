@@ -40,13 +40,13 @@ namespace math {
 
 	};
 
-	template <size_t DIM, class T>
+	template <size_t DIM, class T = float>
 	Vector<DIM, T>& operator*(const T& scalar, const Vector<DIM, T>& vector);
 
-	template <class T>
+	template <class T = float>
 	Vector<3, T> operator%(const Vector<3, T>& lhs, const Vector<3, T>& rhs);
 
-	template <class T>
+	template <class T = float>
 	Vector<3, T>& operator%=(Vector<3, T>& lhs, const Vector<3, T>& rhs);
 
 	template <size_t DIM, class T = float>
