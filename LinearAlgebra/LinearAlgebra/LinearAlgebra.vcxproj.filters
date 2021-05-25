@@ -21,6 +21,9 @@
     <ClCompile Include="Matrix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SMatrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector.h">
@@ -32,12 +35,18 @@
     <ClInclude Include="Matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SMatrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
       <Filter>Source Files</Filter>
     </None>
     <None Include="Matrix.inl">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="SMatrix.inl">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
