@@ -1,8 +1,15 @@
 #include "Matrix.h"
 
+#include <cmath>
+#include <numeric>
+
 #include "Exception.h"
 
 namespace math {
+
+	using std::abs;
+	using std::fmax;
+	using std::pow;
 
 	template <size_t M, size_t N, class T>
 	Matrix<M, N, T>::Matrix(const T& value) {
@@ -204,7 +211,24 @@ namespace math {
 
 	template <size_t M, size_t N, class T>
 	T norm(const Matrix<M, N, T>& matrix, size_t order) {
-
+		if (order > 0) {
+			T result(0.0f);
+			for (size_t i = 0; i < M; i++) {
+				for (size_t j = 0; j < N; j++) {
+					result += T(pow(abs(matrix(i, j)), order));
+				}
+			}
+			return T(pow(double(result), 1.0 / order));
+		}
+		else {
+			T result = matrix(0, 0);
+			for (size_t i = 0; i < M; i++) {
+				for (size_t j = 0; j < N; j++) {
+					result = fmax(result, abs(matrix(i, j)));
+				}
+			}
+			return result;
+		}
 	}
 
 	template <size_t M, size_t N, class T>

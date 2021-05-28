@@ -8,10 +8,7 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LinearAlgebraTest", "LinearAlgebraTest\LinearAlgebraTest.vcxproj", "{B08059C2-AB3F-4BCD-AFA1-75C9660A8225}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BB6BFD73-28CC-438D-8669-20C4E5E805ED} = {BB6BFD73-28CC-438D-8669-20C4E5E805ED}
-		{6748E5A0-D49D-4894-A470-1C11B4719937} = {6748E5A0-D49D-4894-A470-1C11B4719937}
 	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Exception", "Exception\Exception.vcxproj", "{6748E5A0-D49D-4894-A470-1C11B4719937}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +34,6 @@ Global
 		{B08059C2-AB3F-4BCD-AFA1-75C9660A8225}.Release|x64.Build.0 = Debug|x64
 		{B08059C2-AB3F-4BCD-AFA1-75C9660A8225}.Release|x86.ActiveCfg = Debug|x64
 		{B08059C2-AB3F-4BCD-AFA1-75C9660A8225}.Release|x86.Build.0 = Debug|x64
-		{6748E5A0-D49D-4894-A470-1C11B4719937}.Debug|x64.ActiveCfg = Debug|x64
-		{6748E5A0-D49D-4894-A470-1C11B4719937}.Debug|x64.Build.0 = Debug|x64
-		{6748E5A0-D49D-4894-A470-1C11B4719937}.Debug|x86.ActiveCfg = Debug|Win32
-		{6748E5A0-D49D-4894-A470-1C11B4719937}.Debug|x86.Build.0 = Debug|Win32
-		{6748E5A0-D49D-4894-A470-1C11B4719937}.Release|x64.ActiveCfg = Release|x64
-		{6748E5A0-D49D-4894-A470-1C11B4719937}.Release|x64.Build.0 = Release|x64
-		{6748E5A0-D49D-4894-A470-1C11B4719937}.Release|x86.ActiveCfg = Release|Win32
-		{6748E5A0-D49D-4894-A470-1C11B4719937}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

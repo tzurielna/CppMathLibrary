@@ -17,22 +17,22 @@ namespace math {
 	SMatrix<M, T> determinant(const SMatrix<M, T>& matrix, size_t exp);
 
 	template <size_t M, class T = float>
-	class RotateMatrix : public SMatrix {
+	class RotateMatrix : public SMatrix<M, T> {
 		RotateMatrix(const T& angle);
 	};
 
 	template <size_t M, class T = float>
-	class TranslationMatrix : public SMatrix {
+	class TranslationMatrix : public SMatrix<M, T> {
 		TranslationMatrix(const Vector<M, T>& vector);
 	};
 
 	template <size_t M, class T = float>
-	class ScaleMatrix : public SMatrix {
+	class ScaleMatrix : public SMatrix<M, T> {
 		ScaleMatrix(const T& scalar);
 	};
 
 	template <size_t M, class T = float>
-	class DiagnolMatrix : public SMatrix {
+	class DiagnolMatrix : public SMatrix<M, T> {
 		DiagnolMatrix(const Vector<M, T>& vector);
 	};
 

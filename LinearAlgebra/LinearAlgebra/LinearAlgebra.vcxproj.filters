@@ -24,6 +24,9 @@
     <ClCompile Include="SMatrix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector.h">
@@ -38,6 +41,9 @@
     <ClInclude Include="SMatrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Exception.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Vector.inl">
@@ -47,6 +53,9 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="SMatrix.inl">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Exception.inl">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

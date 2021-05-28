@@ -20,6 +20,7 @@ namespace math {
 		T m_value;
 	};
 
+	template <class T = float>
 	class InmatchDimensionsException : public exception {
 	public:
 		InmatchDimensionsException(size_t expectedDim, size_t givenDim, string message = "");
@@ -31,11 +32,13 @@ namespace math {
 		string m_message;
 	};
 
+	template <class T = float>
 	class DivisionByZeroException : public exception {
 	public:
 		const char* what() const override;
 	};
 
+	template <class T = float>
 	class TringNormalizeZeroVectorException : public exception {
 	public:
 		const char* what() const override;
@@ -44,3 +47,4 @@ namespace math {
 }
 
 #include "Exception.inl"
+

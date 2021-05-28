@@ -114,7 +114,7 @@ namespace math {
 	template <size_t DIM, class T>
 	Vector<DIM, T> Vector<DIM, T>::operator/(const T& scalar) const {
 		if (!scalar) {
-			throw DivisionByZeroException();
+			throw DivisionByZeroException<T>();
 		}
 		Vector<DIM, T> result;
 		for (size_t i = 0; i < DIM; i++) {
@@ -126,7 +126,7 @@ namespace math {
 	template <size_t DIM, class T>
 	Vector<DIM, T>& Vector<DIM, T>::operator/=(const T& scalar) {
 		if (!scalar) {
-			throw DivisionByZeroException();
+			throw DivisionByZeroException<T>();
 		}
 		for (size_t i = 0; i < DIM; i++) {
 			(*this)[i] /= scalar;
@@ -147,7 +147,7 @@ namespace math {
 	Vector<DIM, T>& Vector<DIM, T>::normalize(size_t order) {
 		T length = norm(*this, order);
 		if (!length) {
-			throw TringNormalizeZeroVectorException();
+			throw TringNormalizeZeroVectorException<T>();
 		}
 		*this /= length;
 		return *this;
@@ -157,7 +157,7 @@ namespace math {
 	Vector<DIM, T> Vector<DIM, T>::normalized(size_t order) const {
 		T length = norm(*this, order);
 		if (!length) {
-			throw TringNormalizeZeroVectorException();
+			throw TringNormalizeZeroVectorException<T>();
 		}
 		return *this / length;
 	}
@@ -215,14 +215,14 @@ namespace math {
 		if (order > 0) {
 			T result(0.0f);
 			for (size_t i = 0; i < DIM; i++) {
-				result += T(pow(vector[i], order));
+				result += T(pow(abs(vector[i]), order));
 			}
 			return T(pow(double(result), 1.0 / order));
 		}
 		else {
 			T result = vector[0];
 			for (size_t i = 1; i < DIM; i++) {
-				result = fmax(result, vector[i]);
+				result = fmax(result, abs(vector[i]));
 			}
 			return result;
 		}
