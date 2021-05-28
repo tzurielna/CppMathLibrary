@@ -15,8 +15,8 @@ namespace math {
 		T* data();
 		const T* data() const;
 
-		T& operator[](size_t index);
-		const T& operator[](size_t index) const;
+		T& operator()(size_t index);
+		const T& operator()(size_t index) const;
 
 		Vector operator+(const Vector& other) const;
 		Vector& operator+=(const Vector& other);

@@ -47,7 +47,7 @@ namespace math {
 	}
 
 	template <size_t DIM, class T>
-	T& Vector<DIM, T>::operator[](size_t index) {
+	T& Vector<DIM, T>::operator()(size_t index) {
 		if (index >= DIM) {
 			throw OutOfRangeException<size_t>(0, DIM - 1, index);
 		}
@@ -55,7 +55,7 @@ namespace math {
 	}
 
 	template <size_t DIM, class T>
-	const T& Vector<DIM, T>::operator[](size_t index) const {
+	const T& Vector<DIM, T>::operator()(size_t index) const {
 		if (index >= DIM) {
 			throw OutOfRangeException<size_t>(0, DIM - 1, index);
 		}
@@ -66,7 +66,7 @@ namespace math {
 	Vector<DIM, T> Vector<DIM, T>::operator+(const Vector& other) const {
 		Vector<DIM, T> result;
 		for (size_t i = 0; i < DIM; i++) {
-			result[i] = (*this)[i] + other[i];
+			result(i) = (*this)(i) + other(i);
 		}
 		return result;
 	}
@@ -74,7 +74,7 @@ namespace math {
 	template <size_t DIM, class T>
 	Vector<DIM, T>& Vector<DIM, T>::operator+=(const Vector& other) {
 		for (size_t i = 0; i < DIM; i++) {
-			(*this)[i] += other[i];
+			(*this)(i) += other(i);
 		}
 		return *this;
 	}
@@ -83,7 +83,7 @@ namespace math {
 	Vector<DIM, T> Vector<DIM, T>::operator-(const Vector& other) const {
 		Vector<DIM, T> result;
 		for (size_t i = 0; i < DIM; i++) {
-			result[i] = (*this)[i] - other[i];
+			result(i) = (*this)(i) - other(i);
 		}
 		return result;
 	}
@@ -91,7 +91,7 @@ namespace math {
 	template <size_t DIM, class T>
 	Vector<DIM, T>& Vector<DIM, T>::operator-=(const Vector& other) {
 		for (size_t i = 0; i < DIM; i++) {
-			(*this)[i] -= other[i];
+			(*this)(i) -= other(i);
 		}
 		return *this;
 	}
@@ -100,7 +100,7 @@ namespace math {
 	Vector<DIM, T> Vector<DIM, T>::operator-() const {
 		Vector<DIM, T> result;
 		for (size_t i = 0; i < DIM; i++) {
-			result[i] = -(*this)[i];
+			result(i) = -(*this)(i);
 		}
 		return result;
 	}
@@ -109,7 +109,7 @@ namespace math {
 	Vector<DIM, T> Vector<DIM, T>::operator*(const T& scalar) const {
 		Vector<DIM, T> result;
 		for (size_t i = 0; i < DIM; i++) {
-			result[i] = (*this)[i] * scalar;
+			result(i) = (*this)(i) * scalar;
 		}
 		return result;
 	}
@@ -117,7 +117,7 @@ namespace math {
 	template <size_t DIM, class T>
 	Vector<DIM, T>& Vector<DIM, T>::operator*=(const T& scalar) {
 		for (size_t i = 0; i < DIM; i++) {
-			(*this)[i] *= scalar;
+			(*this)(i) *= scalar;
 		}
 		return *this;
 	}
@@ -129,7 +129,7 @@ namespace math {
 		}
 		Vector<DIM, T> result;
 		for (size_t i = 0; i < DIM; i++) {
-			result[i] = (*this)[i] / scalar;
+			result(i) = (*this)(i) / scalar;
 		}
 		return result;
 	}
@@ -140,7 +140,7 @@ namespace math {
 			throw DivisionByZeroException<T>();
 		}
 		for (size_t i = 0; i < DIM; i++) {
-			(*this)[i] /= scalar;
+			(*this)(i) /= scalar;
 		}
 		return *this;
 	}
@@ -149,7 +149,7 @@ namespace math {
 	T Vector<DIM, T>::operator*(const Vector& other) const {
 		T result(0.0f);
 		for (size_t i = 0; i < DIM; i++) {
-			result += (*this)[i] * other[i];
+			result += (*this)(i) * other(i);
 		}
 		return result;
 	}
@@ -181,9 +181,9 @@ namespace math {
 	template <class T>
 	Vector<3, T> operator%<T>(const Vector<3, T>& lhs, const Vector<3, T>& rhs) {
 		Vector<3, T> result;
-		result[0] = lhs[1] * rhs[2] - lhs[2] * rhs[1];
-		result[1] = lhs[2] * rhs[0] - lhs[0] * rhs[2];
-		result[2] = lhs[0] * rhs[1] - lhs[1] * rhs[0];
+		result(0) = lhs(1) * rhs(2) - lhs(2) * rhs(1);
+		result(1) = lhs(2) * rhs(0) - lhs(0) * rhs(2);
+		result(2) = lhs(0) * rhs(1) - lhs(1) * rhs(0);
 		return result;
 	}
 
@@ -197,9 +197,9 @@ namespace math {
 	std::ostream& operator<<<DIM, T>(std::ostream& os, const Vector<DIM, T>& vector) {
 		os << "(";
 		if (DIM > 0) {
-			os << vector[0];
+			os << vector(0);
 			for (size_t i = 1; i < DIM; i++) {
-				os << ", " << vector[i];
+				os << ", " << vector(i);
 			}
 		}
 		os << ")";
@@ -210,7 +210,7 @@ namespace math {
 	std::istream& operator>><DIM, T>(std::istream& is, const Vector<DIM, T>& vector) {
 		if (DIM > 0) {
 			for (size_t i = 0; i < DIM; i++) {
-				is >> vector[i];
+				is >> vector(i);
 			}
 		}
 		return is;
@@ -226,14 +226,14 @@ namespace math {
 		if (order > 0) {
 			T result(0.0f);
 			for (size_t i = 0; i < DIM; i++) {
-				result += T(pow(abs(vector[i]), order));
+				result += T(pow(abs(vector(i)), order));
 			}
 			return T(pow(double(result), 1.0 / order));
 		}
 		else {
-			T result = vector[0];
+			T result = vector(0);
 			for (size_t i = 1; i < DIM; i++) {
-				result = fmax(result, abs(vector[i]));
+				result = fmax(result, abs(vector(i)));
 			}
 			return result;
 		}

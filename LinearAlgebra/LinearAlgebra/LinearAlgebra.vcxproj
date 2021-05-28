@@ -138,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Exception.h" />
+    <ClInclude Include="LinearAlgebra.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SMatrix.h" />

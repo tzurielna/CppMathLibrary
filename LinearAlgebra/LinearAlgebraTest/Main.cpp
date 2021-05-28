@@ -1,5 +1,4 @@
-#include "Vector.h"
-#include "Matrix.h"
+#include "LinearAlgebra.h"
 
 int main() {
 
@@ -26,5 +25,13 @@ int main() {
 	std::cout << matrix1 * 2.5f << matrix1 / 2.5f << std::endl;
 	std::cout << dimension(matrix1)[0] << " " << dimension(matrix1)[1] << " " << norm(matrix1) << " " << distance(matrix1, matrix2) << std::endl;
 	std::cout << matrix1.normalized(0) << std::endl;
+
+	// Squere Matrixs Test
+
+	std::cout << math::ScaleMatrix<4>(2.0f) << std::endl;
+	std::cout << math::DiagnolMatrix<3>(vector1) << std::endl;
+	std::cout << math::RotateMatrix<2>(math::PI / 2) << std::endl;
+	std::cout << math::TranslationMatrix<3>(vector1) << std::endl;
+	std::cout << math::IdentityMatrix<5> << std::endl;
 
 }
