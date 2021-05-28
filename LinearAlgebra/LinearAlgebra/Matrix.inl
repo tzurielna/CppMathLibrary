@@ -26,6 +26,19 @@ namespace math {
 	}
 
 	template <size_t M, size_t N, class T>
+	Matrix<M, N, T>::Matrix(const std::initializer_list<std::initializer_list<T>>& list) {
+		auto it1 = list.begin();
+		for (size_t i = 0; i < M; i++) {
+			auto it2 = it1->begin();
+			for (size_t j = 0; j < N; j++) {
+				(*this)(i, j) = *it2;
+				it2++;
+			}
+			it1++;
+		}
+	}
+
+	template <size_t M, size_t N, class T>
 	T* Matrix<M, N, T>::data() {
 		return m_values;
 	}
@@ -79,7 +92,7 @@ namespace math {
 		Matrix<N, M, T> result;
 		for (size_t i = 0; i < M; i++) {
 			for (size_t j = 0; j < N; j++) {
-				result(i, j) = (*this)(i, j) + other(i, j);
+				result(i, j) = (*this)(i, j) - other(i, j);
 			}
 		}
 		return result;
@@ -135,7 +148,7 @@ namespace math {
 		Matrix<N, M, T> result;
 		for (size_t i = 0; i < M; i++) {
 			for (size_t j = 0; j < N; j++) {
-				result(i, j) = (*this)(i, j) * scalar;
+				result(i, j) = (*this)(i, j) / scalar;
 			}
 		}
 		return result;
@@ -149,11 +162,13 @@ namespace math {
 
 	template <size_t M, size_t N, class T>
 	template <size_t K>
-	Matrix<M, N, T> Matrix<M, N, T>::operator*(const Matrix<N, K, T>& other) const {
-		Matrix<N, M, T> result;
+	Matrix<M, K, T> Matrix<M, N, T>::operator*(const Matrix<N, K, T>& other) const {
+		Matrix<M, K, T> result;
 		for (size_t i = 0; i < M; i++) {
-			for (size_t j = 0; j < N; j++) {
-				result(i, j) = (*this)(i, j) * scalar;
+			for (size_t j = 0; j < K; j++) {
+				for (size_t k = 0; k < N; k++) {
+					result(i, j) += (*this)(i, k) * other(k, j);
+				}
 			}
 		}
 		return result;
@@ -161,7 +176,7 @@ namespace math {
 
 	template <size_t M, size_t N, class T>
 	template <size_t K>
-	Matrix<M, N, T>& Matrix<M, N, T>::operator*=(const Matrix<N, K, T>& other) {
+	Matrix<M, K, T>& Matrix<M, N, T>::operator*=(const Matrix<N, K, T>& other) {
 		*this = *this * other;
 		return *this;
 	}
@@ -185,11 +200,11 @@ namespace math {
 	template <size_t M, size_t N, class T>
 	std::ostream& operator<<(std::ostream& os, const Matrix<M, N, T>& matrix) {
 		for (size_t i = 0; i < M; i++) {
-			os << '[ ';
+			os << "[ ";
 			for (size_t j = 0; j < N; j++) {
-				os << matrix(i, j) << ' ';
+				os << matrix(i, j) << " ";
 			}
-			os << ']' << std::endl;
+			os << "]" << std::endl;
 		}
 		return os;
 	}
@@ -205,8 +220,9 @@ namespace math {
 	}
 
 	template <size_t M, size_t N, class T>
-	size_t* dimension(const Matrix<M, N, T>& matrix) {
-		return {M, N};
+	std::vector<size_t> dimension(const Matrix<M, N, T>& matrix) {
+		std::vector<size_t> dim = { M, N };
+		return dim;
 	}
 
 	template <size_t M, size_t N, class T>

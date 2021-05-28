@@ -26,6 +26,17 @@ namespace math {
 	}
 
 	template <size_t DIM, class T>
+	Vector<DIM, T>::Vector(const std::initializer_list<T>& list) {
+		auto j = list.begin();
+		for (size_t i = 0; j != list.end(); i++, j++) {
+			if (i >= DIM) {
+				throw InmatchDimensionsException<T>(DIM, DIM + 1);
+			}
+			m_values[i] = *j;
+		}
+	}
+
+	template <size_t DIM, class T>
 	T* Vector<DIM, T>::data() {
 		return m_values;
 	}
@@ -231,30 +242,6 @@ namespace math {
 	template <size_t DIM, class T>
 	T distance(const Vector<DIM, T>& lhs, const Vector<DIM, T>& rhs, size_t order) {
 		return norm(lhs - rhs, order);
-	}
-
-	template <class T>
-	Vector<1, T> get_vector(const T& x) {
-		T arr[1] = { x };
-		return Vector<1, T>(arr);
-	}
-
-	template <class T>
-	Vector<2, T> get_vector(const T& x, const T& y) {
-		T arr[2] = { x,y };
-		return Vector<2, T>(arr);
-	}
-
-	template <class T>
-	Vector<3, T> get_vector(const T& x, const T& y, const T& z) {
-		T arr[3] = { x,y,z };
-		return Vector<3, T>(arr);
-	}
-
-	template <class T>
-	Vector<4, T> get_vector(const T& x, const T& y, const T& z, const T& w) {
-		T arr[4] = { x,y,z,w };
-		return Vector<4, T>(arr);
 	}
 
 }

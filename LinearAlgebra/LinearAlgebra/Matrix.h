@@ -1,16 +1,19 @@
 #pragma once
 
+#include <initializer_list>
 #include <iostream>
+#include <vector>
 
 #include "Vector.h"
 
 namespace math {
 
-	template <size_t M, size_t N, class T = float>
+	template <size_t M, size_t N = M, class T = float>
 	class Matrix {
 	public:
 		Matrix(const T& value = 0);
 		Matrix(const T values[M * N]);
+		Matrix(const std::initializer_list<std::initializer_list<T>>& list);
 
 		T* data();
 		const T* data() const;
@@ -34,9 +37,9 @@ namespace math {
 		Matrix& operator/=(const T& scalar);
 
 		template <size_t K>
-		Matrix operator*(const Matrix<N, K, T>& other) const;
+		Matrix<M, K, T> operator*(const Matrix<N, K, T>& other) const;
 		template <size_t K>
-		Matrix& operator*=(const Matrix<N, K, T>& other);
+		Matrix<M, K, T>& operator*=(const Matrix<N, K, T>& other);
 
 		Matrix& normalize(size_t order = 2);
 		Matrix normalized(size_t order = 2) const;
@@ -55,7 +58,7 @@ namespace math {
 	std::istream& operator>>(std::istream& is, const Matrix<M, N, T>& matrix);
 
 	template <size_t M, size_t N, class T = float>
-	size_t* dimension(const Matrix<M, N, T>& matrix);
+	std::vector<size_t> dimension(const Matrix<M, N, T>& matrix);
 
 	template <size_t M, size_t N, class T = float>
 	T norm(const Matrix<M, N, T>& matrix, size_t order = 2);
@@ -64,4 +67,6 @@ namespace math {
 	T distance(const Matrix<M, N, T>& lhs, const Matrix<M, N, T>& rhs, size_t order = 2);
 
 }
+
+#include "Matrix.inl"
 

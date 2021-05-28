@@ -1,5 +1,6 @@
 #pragma once
 
+#include <initializer_list>
 #include <iostream>
 
 namespace math {
@@ -9,6 +10,7 @@ namespace math {
 	public:
 		Vector(const T& value = 0);
 		Vector(const T values[DIM]);
+		Vector(const std::initializer_list<T>& list);
 
 		T* data();
 		const T* data() const;
@@ -63,18 +65,6 @@ namespace math {
 
 	template <size_t DIM, class T = float>
 	T distance(const Vector<DIM, T>& lhs, const Vector<DIM, T>& rhs, size_t order = 2);
-
-	template <class T = float>
-	Vector<1, T> get_vector(const T& x);
-
-	template <class T = float>
-	Vector<2, T> get_vector(const T& x, const T& y);
-
-	template <class T = float>
-	Vector<3, T> get_vector(const T& x, const T& y, const T& z);
-
-	template <class T = float>
-	Vector<4, T> get_vector(const T& x, const T& y, const T& z, const T& w);
 
 }
 
