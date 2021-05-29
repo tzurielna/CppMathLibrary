@@ -11,12 +11,12 @@ namespace math {
 	T trace(const Matrix<M, M, T>& matrix);
 
 	template <size_t M, class T = float>
-	Matrix<M, M, T> determinant(const Matrix<M, M, T>& matrix, size_t exp);
+	T determinant(const Matrix<M, M, T>& matrix, size_t exp);
 
-	template <size_t M, class T = float>
-	class RotateMatrix : public Matrix<M, M, T> {
+	template <class T = float>
+	class RotationMatrix : public Matrix<2, 2, T> {
 	public:
-		RotateMatrix(const T& angle);
+		RotationMatrix(const T& angle);
 	};
 
 	template <size_t M, class T = float>
@@ -38,7 +38,7 @@ namespace math {
 	};
 
 	template <size_t M, class T = float>
-	const Matrix<M, M, T> IdentityMatrix = DiagnolMatrix<M, T>(Vector<M, T>(1.0f));
+	const Matrix<M, M, T> IDENTITY_MATRIX = DiagnolMatrix<M, T>(Vector<M, T>(1.0f));
 
 }
 
